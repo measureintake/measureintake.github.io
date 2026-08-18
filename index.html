@@ -3,68 +3,217 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Measure — every pitch, its facts on top</title>
-<meta name="description" content="Forward any pitch email. It comes back in under a minute with what it is, their numbers, and the ask on top — the original untouched below. Free. Nothing to install.">
+<title>Measure — forward a pitch, get the facts back in a minute</title>
+<meta name="description" content="Forward any startup pitch email to Measure. It comes back within a minute with WHAT IT IS / THEIR NUMBERS / THE ASK on top, the original untouched below, and Reply going straight to the founder. Free. Nothing to install. No inbox access. No AI vendor.">
+<link rel="canonical" href="https://measureintake.github.io/">
+<meta property="og:title" content="Measure — forward a pitch, get the facts back in a minute">
+<meta property="og:description" content="What it is · Their numbers · The ask — pulled from the founder's own words. Free, nothing to install, no inbox access, no AI vendor.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://measureintake.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230b3d2e'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23f6f2e9'%3EM%3C/text%3E%3C/svg%3E">
 <style>
-  :root{--ink:#12130f;--green:#0b3d2e;--cream:#f6f2e9;--line:#d9d2c2;--gold:#8a6f3d;--sub:#55554f}
+  :root{--ink:#12130f;--green:#0b3d2e;--cream:#f6f2e9;--line:#d9d2c2;--gold:#8a6f3d;--sub:#55554f;--card:#fffdf8}
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{background:var(--cream);color:var(--ink);
-       font:17px/1.65 Georgia,'Times New Roman',serif;-webkit-text-size-adjust:100%}
-  .wrap{max-width:640px;margin:0 auto;padding:64px 24px 80px}
-  .mark{text-align:center;font-size:13px;letter-spacing:.42em;color:var(--green);font-weight:700;margin-bottom:6px}
-  .rule{width:52px;height:1px;background:var(--gold);margin:18px auto 34px}
-  h1{font-size:31px;font-weight:400;text-align:center;line-height:1.35}
-  .lede{text-align:center;color:var(--sub);font-size:17px;margin-top:14px;font-style:italic}
-  .how{margin:44px 0 8px;border-top:1px solid var(--line)}
-  .step{padding:22px 4px;border-bottom:1px solid var(--line)}
-  .step b{display:block;font-size:12.5px;letter-spacing:.18em;color:var(--green);font-weight:700;margin-bottom:7px}
-  .step p{color:#33322c;font-size:16.5px}
-  .step .addr{font-family:Georgia,serif;color:var(--green);font-weight:700}
-  .cta{display:block;width:fit-content;margin:38px auto 0;padding:15px 34px;
-       background:var(--green);color:var(--cream);text-decoration:none;
-       font-size:15px;letter-spacing:.14em;border-radius:2px}
-  .cta:hover{background:#0e4a38}
-  .quiet{text-align:center;margin-top:12px;font-size:14px;color:var(--sub)}
-  .vows{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);
-        font-size:14.5px;color:var(--sub);line-height:1.8}
-  .vows b{color:var(--ink);font-weight:700}
-  .foot{margin-top:40px;text-align:center;font-size:13px;color:var(--sub)}
+       font:17px/1.6 Georgia,'Noto Serif','Times New Roman',serif;-webkit-text-size-adjust:100%}
+  .wrap{max-width:660px;margin:0 auto;padding:40px 22px 70px}
+  .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .mark{font-size:13px;letter-spacing:.38em;color:var(--green);font-weight:700}
+  .lang{font-size:13px;color:var(--sub)}
+  .lang a{color:var(--sub);text-decoration:none;border-bottom:1px solid var(--line)}
+  h1{font-size:30px;font-weight:400;line-height:1.3;letter-spacing:.005em}
+  .lede{color:var(--sub);font-size:17px;margin-top:12px}
+  .lede b{color:var(--ink);font-weight:700}
+  .addr{margin:26px 0 8px;display:flex;flex-wrap:wrap;gap:10px;align-items:stretch}
+  .addr code{flex:1 1 220px;font:700 17px/1.2 Menlo,Consolas,'Courier New',monospace;color:var(--green);
+             background:var(--card);border:1.5px solid var(--line);border-radius:4px;padding:14px 16px;
+             display:flex;align-items:center;word-break:break-all}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:4px;
+       font-size:14.5px;letter-spacing:.1em;text-decoration:none;cursor:pointer;border:0;font-family:inherit}
+  .btn.p{background:var(--green);color:var(--cream)}
+  .btn.p:hover{background:#0e4a38}
+  .btn.s{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+  .how{font-size:14.5px;color:var(--sub);margin-top:6px}
+  .strip{margin:22px 0 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+         font-size:14px;color:var(--sub);text-align:center;letter-spacing:.02em}
+  .strip b{color:var(--green);font-weight:700}
+  h2{font-size:12.5px;letter-spacing:.24em;color:var(--green);font-weight:700;margin:52px 0 16px}
+  /* the sample card */
+  .card{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;
+        font-family:-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+  .card .bar{background:#f1efe8;padding:9px 16px;font-size:12px;color:var(--sub);display:flex;justify-content:space-between}
+  .card .in{padding:18px 18px 8px}
+  .card .hd{font-size:18px;font-weight:800;color:#191919;margin-bottom:14px;line-height:1.35}
+  .card .lb{font-size:11px;font-weight:800;letter-spacing:.09em;color:#55554f;margin:0 0 3px}
+  .card .vl{font-size:15.5px;line-height:1.5;color:#191919;margin:0 0 13px}
+  .card .chips{padding:0 18px 12px}
+  .card .chips span{display:inline-block;padding:9px 12px;margin:3px 6px 3px 0;border-radius:9px;
+        border:2px solid #0d7a4f;color:#0d7a4f;font-size:13px;font-weight:700}
+  .card .chips span.g{border-color:#b9b7b0;color:#555550}
+  .card .seam{border-top:1px solid #e6e4de;padding:12px 18px 16px;font-size:13px;color:#55554f}
+  .card .seam .o{color:#444;font-size:13px;line-height:1.55;margin-top:8px}
+  .cap{font-size:13.5px;color:var(--sub);margin-top:10px;font-style:italic}
+  /* steps + lists */
+  .step{padding:16px 0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:none}
+  .step b{display:block;font-size:12px;letter-spacing:.16em;color:var(--green);font-weight:700;margin-bottom:5px}
+  .step p{color:#33322c;font-size:16px}
+  .who{color:#33322c;font-size:16px}
+  .who span{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:3px;
+            padding:5px 10px;margin:4px 6px 4px 0;font-size:14.5px}
+  /* trust */
+  .trust{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px 20px}
+  .trust dl{margin:0}
+  .trust dt{font-weight:700;font-size:15px;color:var(--ink);margin-top:16px}
+  .trust dd{color:#33322c;font-size:15.5px;margin:3px 0 14px}
+  .trust dd:last-child{margin-bottom:16px}
+  /* faq */
+  details{border-bottom:1px solid var(--line);padding:12px 0}
+  summary{cursor:pointer;font-weight:700;font-size:16px;color:var(--ink);list-style:none;display:flex;justify-content:space-between}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:'+';color:var(--gold);font-weight:400;margin-left:12px}
+  details[open] summary::after{content:'–'}
+  details p{color:#33322c;font-size:15.5px;margin-top:8px}
+  /* maker */
+  .maker{display:flex;gap:18px;align-items:flex-start}
+  .maker .ph{flex:0 0 76px;height:76px;border-radius:50%;background:var(--green);color:var(--cream);
+             display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700}
+  .maker p{color:#33322c;font-size:15.5px}
+  .maker .nm{font-weight:700;color:var(--ink);font-size:16px}
+  .maker a{color:var(--green)}
+  .status{margin-top:22px;font-size:14px;color:var(--sub);text-align:center}
+  .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--sub);text-align:center;line-height:1.9}
   .foot a{color:var(--sub)}
-  @media(max-width:480px){.wrap{padding:44px 18px 60px}h1{font-size:25px}}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--green);color:var(--cream);
+         padding:10px 18px;border-radius:4px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none}
+  .toast.on{opacity:1}
+  @media(max-width:480px){.wrap{padding:28px 16px 56px}h1{font-size:25px}.card .hd{font-size:16px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="mark">M E A S U R E</div>
-  <div class="rule"></div>
 
-  <h1>Every pitch email, returned<br>with its facts on top.</h1>
-  <p class="lede">What it is. Their numbers. The ask.<br>In the sender's own words — in under a minute.</p>
-
-  <div class="how">
-    <div class="step">
-      <b>1 · FORWARD</b>
-      <p>Forward any pitch email to <span class="addr">pitch.intake@gmail.com</span>. That's the whole setup. No account, no software, no access to your inbox — we could not open it if we tried.</p>
-    </div>
-    <div class="step">
-      <b>2 · IT COMES BACK</b>
-      <p>Within a minute, the same email returns to you with three labelled lines above the fold — WHAT IT IS, THEIR NUMBERS, THE ASK — and the original, untouched, below. Nothing scored, nothing judged. The decision stays entirely yours.</p>
-    </div>
-    <div class="step">
-      <b>3 · REPLY GOES TO THE FOUNDER</b>
-      <p>Hit reply and it goes to the person who wrote the pitch — never to us. Same phone, same habits, two seconds better.</p>
-    </div>
+  <div class="top">
+    <div class="mark">MEASURE</div>
+    <div class="lang"><a href="fr.html" hreflang="fr">Français</a></div>
   </div>
 
-  <a class="cta" href="mailto:pitch.intake@gmail.com?subject=Fwd%3A%20">FORWARD A PITCH NOW</a>
-  <div class="quiet">Free. For investors, program managers, and anyone whose inbox is a pile of pitches.</div>
+  <h1>Forward a pitch email. Get it back in a minute with the facts on top.</h1>
+  <p class="lede"><b>What it is · Their numbers · The ask</b> — three lines in the founder's own words, the original untouched below, and Reply goes straight to the founder. Free. Nothing to install. No inbox access. No AI vendor.</p>
 
-  <div class="vows">
-    <b>The undertakings.</b> Your mail is used only to produce your summary — nothing else, ever. Original text is deleted after thirty days. No reply is ever sent on your behalf. Stopping is as simple as not forwarding.<br><br>
-    <b>Why it exists.</b> Good pitches die under bad subject lines. Measure puts every founder's real numbers where a two-second glance can see them — every email weighed the same, none given short measure.
+  <div class="addr">
+    <code id="addr">pitch.intake@gmail.com</code>
+    <button class="btn p" id="copy" type="button">COPY ADDRESS</button>
   </div>
+  <p class="how">Try it once: open any pitch → <b>Forward</b> → paste the address → send. Then <a href="#once" style="color:var(--green)">set it up once</a> — a filter in your own mail settings — and never forward again.</p>
+  <p class="how" style="margin-top:10px">Not ready to forward a real one? <a class="btn s" style="padding:9px 14px;font-size:13px" href="mailto:pitch.intake@gmail.com?subject=Fwd%3A%20Cutting%20vaccine%20spoilage%2034%25&body=---------- Forwarded message ---------%0AFrom%3A Sarah Chen %3Csarah%40coldchainiq.example%3E%0ASubject%3A Cutting vaccine spoilage 34%25%0A%0AHi%2C Cold Chain IQ sells a %24200 sensor%2Bsoftware kit that cuts vaccine spoilage 34%25 in independent clinic trials. %2441k MRR%2C 61 clinics signed%2C 9%25 m%2Fm growth. Unlike Berlinger and Sensitech%2C we need no gateway hardware. Raising %24600k on a SAFE at %246M cap.%0A%0AThanks%2C Sarah">TRY IT ON A SAMPLE PITCH</a> &nbsp;<span style="font-size:13px">— 60 seconds, nothing confidential, comes back to you.</span></p>
 
-  <div class="foot">Toronto · est. 2026 · built by Adil Mannan · <a href="mailto:adil.mannan1@gmail.com">questions</a></div>
+  <div class="strip"><b>FREE</b> · <b>NO INSTALL</b> · <b>NO INBOX ACCESS</b> · <b>NO AI VENDOR</b> · EN / FR · ₹ crore · Tk lakh · RM · Rp · PKR · S$ · SAR · AED</div>
+
+  <h2>WHAT COMES BACK</h2>
+  <div class="card" aria-label="Sample of a returned pitch">
+    <div class="bar"><span>Sarah Chen · coldchainiq.example</span><span>SAMPLE</span></div>
+    <div class="in">
+      <div class="hd">$200 · 34% · $41k MRR</div>
+      <div class="lb">WHAT IT IS</div>
+      <div class="vl">• Cold Chain IQ sells a $200 sensor+software kit that cuts vaccine spoilage 34% in independent clinic…</div>
+      <div class="lb">THEIR NUMBERS</div>
+      <div class="vl">• $41k MRR, 61 clinics signed, 9% m/m growth.</div>
+      <div class="lb">THE ASK</div>
+      <div class="vl">• Raising $600k on a SAFE at $6M cap.</div>
+    </div>
+    <div class="chips"><span>What's behind the numbers — retention, margins, growth?</span><span>What stops Berlinger from copying this in 12 months?</span><span class="g">Polite pass</span></div>
+    <div class="seam">From sarah@coldchainiq.example — original below, untouched
+      <div class="o">Hi, Cold Chain IQ sells a $200 sensor+software kit that cuts vaccine spoilage 34% in independent clinic trials. $41k MRR, 61 clinics signed, 9% m/m growth. Unlike Berlinger and Sensitech, we need no gateway hardware. Raising $600k on a SAFE at $6M cap. Thanks, Sarah</div>
+    </div>
+  </div>
+  <p class="cap">Every line is lifted from the founder's own text. Nothing is scored, ranked, or judged — the decision stays entirely yours. When something isn't in the email, it says "Not stated."</p>
+
+  <h2 id="once">SET IT UP ONCE — THEN NEVER FORWARD AGAIN</h2>
+  <p class="who" style="margin-bottom:14px">Forwarding one pitch is the test. The real way to use Measure is a filter or rule in your own mail settings, made once: every pitch that arrives comes back with the facts on top, and you never touch it. <b>You give Measure nothing</b> — the rule lives in your account, under your control, and you can delete it any time.</p>
+
+  <div class="step" style="background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-bottom:6px"><b>THE EASY WAY · 15 MINUTES WITH ME</b>
+    <p>Reply <b>“set me up”</b> to <a href="mailto:adil.mannan1@gmail.com?subject=Set%20me%20up%20%E2%80%94%20Measure&body=Hi%20Adil%2C%20I%27d%20like%20Measure%20running%20on%20my%20inbox.%20I%20use%20%5BGmail%20%2F%20Outlook%5D.%20Good%20times%20for%20a%2015-minute%20call%3A%20" style="color:var(--green)">adil.mannan1@gmail.com</a> and I'll do it with you on a short call — filter live, your last twenty pitches summarised before we hang up, nothing for you to configure alone. Every one of the first thirty users gets this. It's how a good tool should arrive.</p></div>
+
+  <div class="step"><b>GMAIL · SELF-SERVE, ABOUT 90 SECONDS (DESKTOP)</b>
+    <p>1. <a href="https://mail.google.com/mail/u/0/#settings/fwdandpop" target="_blank" rel="noopener">Open Forwarding settings →</a> Add a forwarding address → <code>pitch.intake@gmail.com</code>.<br>
+    2. Google emails Measure a code; <b>Measure emails it straight back to you</b> within a minute — paste it and click Verify. (Or tell me and I'll confirm it from my side.)<br>
+    3. <a href="https://mail.google.com/mail/u/0/#create-filter/has=raising+OR+%22pitch+deck%22+OR+%22seed+round%22+OR+%22our+startup%22+OR+investors+OR+%22pre-seed%22" target="_blank" rel="noopener">Open a prefilled filter →</a> (or <a href="https://mail.google.com/mail/u/0/#settings/filters" target="_blank" rel="noopener">Filters</a> → Create new) → <b>Create filter</b> → tick <b>Forward it to</b> → pitch.intake@gmail.com → Create. Done — forever. Only mail matching <em>your</em> words ever reaches Measure; tighten or widen them any time.</p></div>
+
+  <div class="step"><b>OUTLOOK</b>
+    <p><b>Outlook.com (personal):</b> <a href="https://outlook.live.com/mail/0/options/mail/rules" target="_blank" rel="noopener">Rules →</a> Add new rule → body includes <em>raising</em> (add: pitch deck, seed round, investors) → <b>Forward to</b> <code>pitch.intake@gmail.com</code> → Save.<br>
+    <b>Microsoft 365 (work):</b> most organisations block automatic external forwarding by default since 2021 — your admin can allow it, or use the manual Forward button, which always works. Ask me and I'll send your admin the one-line request.</p></div>
+
+  <div class="step"><b>ANGEL GROUPS &amp; COMMITTEES</b>
+    <p>If your group takes pitches through a shared <em>deals@</em> Google Group, adding Measure as a member is one click and needs no code — every committee member then gets the card. Email me the group address and I'll switch it on.</p></div>
+
+  <div class="step"><b>ON YOUR PHONE</b>
+    <p>Save <code>pitch.intake@gmail.com</code> as a contact named <b>Measure</b>. Forwarding a pitch is then Forward → “Me” → send. Once your filter is live, the phone needs nothing at all.</p></div>
+
+  <div class="step"><b>A PILE ALREADY IN YOUR INBOX?</b>
+    <p>Gmail: select up to 50 pitches → ⋮ → <b>Forward as attachment</b> → send once. Each comes back separately, facts on top. One action, whole pile.</p></div>
+  <div class="step"><b>REPLY GOES TO THE FOUNDER</b><p>Reply-To is set to the address in their email, shown plainly so you can see it. Hit reply and it goes to them, never to me. Founders are not told you used this.</p></div>
+
+  <h2>ALSO: A CARD INSIDE GMAIL</h2>
+  <div class="step"><b>MEASURE FOR GMAIL — SAME FACTS, NO FORWARDING</b>
+    <p>The same three lines — WHAT IT IS · THEIR NUMBERS · THE ASK — plus LOOK IT UP buttons and one-tap reply drafts, shown as a card beside the email the moment you open it. No separate email comes back; the facts are just there.</p></div>
+  <div class="step" style="border-bottom:none"><b>STILL IN LIMITED TESTING</b>
+    <p>Not yet a one-click install from Google's add-on store, so there's no install link here. If you'd rather have the card than the forwarded email, email <a href="mailto:adil.mannan1@gmail.com?subject=Gmail%20add-on%20%E2%80%94%20Measure" style="color:var(--green)">adil.mannan1@gmail.com</a> — subject “Gmail add-on” — and I'll get you set up.</p></div>
+
+  <h2>WHO IT'S FOR</h2>
+  <p class="who">Anyone whose inbox is a pile of pitches: <span>angel investors</span><span>angel-group screening committees</span><span>accelerator &amp; program managers</span><span>family-office analysts</span><span>university venture programs</span></p>
+  <p class="who" style="margin-top:12px">Reads pitches in <b>English and French</b>, and figures written the way founders actually write them — <b>₹10 Cr, Rs 50 lakh, Tk 5 crore, PKR 8.8M, RM2mil, Rp 2,4 miliar, S$500K, 1,5 M$, 25 مليون ريال</b> — always shown exactly as written, never converted.</p>
+
+  <h2>WHAT HAPPENS TO YOUR MAIL</h2>
+  <div class="trust"><dl>
+    <dt>What is read</dt><dd>Only the email you forward. I have no connection to your inbox — I could not read anything else if I tried.</dd>
+    <dt>How it is processed</dt><dd>By a fixed set of rules running inside the intake mailbox on Google's servers. No AI model, no third-party service ever sees the text. The rules are deterministic: the same email always produces the same three lines.</dd>
+    <dt>How long it is kept</dt><dd>Seven days, then permanently deleted — trash emptied by the same job. Nothing is stored anywhere else. Your own copy, of course, stays in your inbox.</dd>
+    <dt>Who can see it</dt><dd>No one reads it. One person runs this — Adil Mannan, Toronto — and the mailbox is 2-step-verified. Usage is counted with a one-way salted hash, so I can see <em>how many</em> people use Measure, never <em>who</em>.</dd>
+    <dt>What is sent</dt><dd>Nothing, to anyone, on your behalf. The summary returns only to the authenticated address that forwarded it. Attachments are carried back to you unopened — never scanned, never read.</dd>
+    <dt>How to stop</dt><dd>Stop forwarding. To have anything deleted sooner, email <a href="mailto:adil.mannan1@gmail.com">adil.mannan1@gmail.com</a>.</dd>
+  </dl></div>
+
+  <h2>QUESTIONS</h2>
+  <details><summary>Can the founder tell I used it?</summary><p>No. Your reply is a normal email from you; the subject line is exactly what they wrote. Nothing is sent to them by Measure.</p></details>
+  <details><summary>What if the pitch has no numbers?</summary><p>THEIR NUMBERS says "Not stated." That is a fact about the email, not a judgment about the company — and it's often the most useful thing to know.</p></details>
+  <details><summary>The numbers are in an attached deck, not the email.</summary><p>The deck comes back to you unopened with an ATTACHED line naming it. Measure never opens attachments — reading decks would mean parsing your confidential files, and I'd rather be honest about the limit.</p></details>
+  <details><summary>Does it work from Outlook, Apple Mail, my phone?</summary><p>Yes — anything that can forward an email. It's an address, not an app.</p></details>
+  <details><summary>Why an email address instead of an app or a Chrome extension?</summary><p>Because an address needs no permission to your inbox. Every "connect your Gmail" tool has to read everything to summarize anything. Forwarding one email shares one email.</p></details>
+  <details><summary>Why is the address at gmail.com?</summary><p>It is a 2-step-verified Google mailbox run by a script on Google's own servers — nothing outside Google touches the mail. A custom domain is coming; the mechanics won't change.</p></details>
+  <details><summary>What do you get out of this?</summary><p>Proof that it saves people time. Measure is free while I learn what investors actually need. If it ever charges, existing users will hear from me first and nothing will change without notice.</p></details>
+  <details><summary>Why can't I just enter my email address and get summaries?</summary><p>Because that would mean giving Measure a login to your inbox — the one thing it is built never to ask for. Every "connect your Gmail" tool must read everything to summarize anything. A filter in your own settings gives the same zero-effort result while you keep the keys.</p></details>
+  <details><summary>If my filter forwards a non-pitch by mistake?</summary><p>Measure checks every message for pitch language before it does anything. Non-pitches are skipped unread — nothing is sent, and the copy is deleted within seven days. Keep the filter words narrow anyway.</p></details>
+  <details><summary>Why offer to set it up on a call — isn't that old-fashioned?</summary><p>Because it works. Superhuman onboarded every early user by hand and more than doubled the share who actually switched. Fifteen minutes with me and it's running; you'll also have my direct line if anything ever looks wrong.</p></details>
+  <details><summary>Group inboxes and forwarding rules?</summary><p>Yes — a shared deals@ address can forward, and Gmail filters can auto-forward pitches. The summary returns to whichever address forwarded.</p></details>
+
+  <h2>WHO BUILT IT</h2>
+  <div class="maker">
+    <div class="ph">A</div>
+    <div>
+      <p class="nm">Adil Mannan · Toronto</p>
+      <p>Graduate student at OISE, University of Toronto; earlier, the Islamic University of Madinah. I built Measure after watching good pitches die under bad subject lines. It puts every founder's real numbers where a two-second glance can see them — every email weighed the same, none given short measure.</p>
+      <p style="margin-top:8px"><a href="mailto:adil.mannan1@gmail.com">adil.mannan1@gmail.com</a></p>
+    </div>
+  </div>
+  <p class="status">Live since August 2026 · a fixed rule set, tested against 640 automated checks · Toronto</p>
+
+  <div class="foot">
+    Adil Mannan · Toronto, Canada · <a href="mailto:adil.mannan1@gmail.com">questions</a> · <a href="fr.html">Français</a><br>
+    Free, no signup, no data sold, ever.
+  </div>
 </div>
+<div class="toast" id="toast">Address copied</div>
+<script>
+  document.getElementById('copy').addEventListener('click', function () {
+    var a = document.getElementById('addr').textContent.trim();
+    function done(){ var t=document.getElementById('toast'); t.classList.add('on'); setTimeout(function(){t.classList.remove('on');},1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(a).then(done, function(){ fallback(); }); }
+    else { fallback(); }
+    function fallback(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('addr'));
+      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy');done();}catch(e){} }
+  });
+</script>
 </body>
 </html>
